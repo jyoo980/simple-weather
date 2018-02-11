@@ -37,7 +37,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qV3-JR-cx4">
-                                <rect key="frame" x="104" y="467" width="163" height="41.666666666666664"/>
+                                <rect key="frame" x="106" y="581" width="163" height="41.666666666666664"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.94862196180555558" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Update Temperature"/>
@@ -51,11 +51,19 @@
                                     <action selector="weatherButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d5y-rG-7b0"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter a Canadian City" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zDu-wS-HXe">
+                                <rect key="frame" x="106" y="494" width="163" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="cityTextInput" destination="zDu-wS-HXe" id="Nfo-OX-dme"/>
                         <outlet property="conditionsLabel" destination="5II-Dc-fnu" id="TC9-am-Thk"/>
                         <outlet property="weatherLabel" destination="s34-g0-mYb" id="XN4-sp-7qx"/>
                     </connections>

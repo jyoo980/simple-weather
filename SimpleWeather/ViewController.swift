@@ -8,17 +8,20 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     private static let getWeatherString = "https://api.openweathermap.org/data/2.5/weather?q=Coquitlam,ca?&units=metric&APPID=29fcb86c6d19d850226cce991fa6985e"
     
     @IBOutlet weak var weatherLabel: UILabel!
-    @IBOutlet weak var conditionsLabel : UILabel!
+    @IBOutlet weak var conditionsLabel: UILabel!
+    @IBOutlet weak var cityTextInput: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         getWeather()
+        // Handle the text field’s user input through delegate callbacks.
+        cityTextInput.delegate = self;
     }
 
     override func didReceiveMemoryWarning() {
