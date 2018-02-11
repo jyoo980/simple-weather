@@ -10,27 +10,40 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
-    private static let getWeatherString = "https://api.openweathermap.org/data/2.5/weather?q=Coquitlam,ca?&units=metric&APPID=29fcb86c6d19d850226cce991fa6985e"
+    private static let getWeatherString = "https://api.openweathermap.org/data/2.5/weather?q={CITY},ca?&units=metric&APPID=29fcb86c6d19d850226cce991fa6985e"
     
     @IBOutlet weak var weatherLabel: UILabel!
     @IBOutlet weak var conditionsLabel: UILabel!
     @IBOutlet weak var cityTextInput: UITextField!
 
+    var userInputtedCity:String = "Coquitlam"
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        getWeather()
-        // Handle the text field’s user input through delegate callbacks.
+        getWeather(selectedCity: "Coquitlam")
         cityTextInput.delegate = self;
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        cityTextInput.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        userInputtedCity = textField.text!
+        getWeather(selectedCity: userInputtedCity)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     @IBAction func weatherButtonTapped(_ sender: UIButton) {
-        getWeather()
+        if userInputtedCity == "" {
+            getWeather(selectedCity: "Coquitlam");
+        } else {
+            getWeather(selectedCity: userInputtedCity)
+        }
     }
     
     fileprivate func getConditions(_ jsonObj: NSDictionary?) {
@@ -44,10 +57,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func getWeather() {
+    func getWeather(selectedCity: String) {
         
         let session = URLSession.shared;
-        let weatherURL = URL(string: ViewController.getWeatherString)
+        let queryString = ViewController.getWeatherString.replacingOccurrences(of: "{CITY}", with: userInputtedCity)
+        let weatherURL = URL(string: queryString)
         
         let dataTask = session.dataTask(with: weatherURL!) {
             (data: Data?, response: URLResponse?, error: Error?) in
@@ -67,7 +81,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         if let mainDictionary = jsonObj!.object(forKey: "main") as? NSDictionary {
                             if let temperature = mainDictionary.value(forKey: "temp") {
                                 DispatchQueue.main.async {
-                                    self.weatherLabel.text = "Coquitlam Temperature: \(temperature)°c"
+                                    self.weatherLabel.text = selectedCity + " Temperature: \(temperature)°c"
                                 }
                             }
                         } else {
