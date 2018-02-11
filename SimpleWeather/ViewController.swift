@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     private static let getWeatherString = "https://api.openweathermap.org/data/2.5/weather?q=London,uk?&units=metric&APPID=29fcb86c6d19d850226cce991fa6985e"
     
     @IBOutlet weak var weatherLabel: UILabel!
+    @IBOutlet weak var conditionsLabel : UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +48,16 @@ class ViewController: UIViewController {
                     
                     if let jsonObj = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? NSDictionary {
                         
-                        if let mainDictionary = jsonObj!.value(forKey: "main") as? NSDictionary {
+                        if let weatherDict = jsonObj?.object(forKey: "weather") as? NSArray {
+                            if let condition = weatherDict[0] as? NSDictionary {
+                                DispatchQueue.main.async {
+                                    let currentCondition = condition.value(forKey: "main") as! String
+                                    self.conditionsLabel.text = "\(String(describing: currentCondition))"
+                                }
+                            }
+                        }
+                        
+                        if let mainDictionary = jsonObj!.object(forKey: "main") as? NSDictionary {
                             if let temperature = mainDictionary.value(forKey: "temp") {
                                 DispatchQueue.main.async {
                                     self.weatherLabel.text = "Vancouver Temperature: \(temperature)°c"
