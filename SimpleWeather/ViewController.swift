@@ -34,8 +34,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        userSelectedCity = textField.text!
+        userSelectedCity = sanitizeInput(selectedCity: textField.text!)
         getWeather(selectedCity: userSelectedCity)
+    }
+    
+    func sanitizeInput(selectedCity: String) -> String {
+        let cleanedCity = selectedCity.trimmingCharacters(in: .whitespaces)
+        return cleanedCity
     }
 
     @IBAction func weatherButtonTapped(_ sender: UIButton) {
