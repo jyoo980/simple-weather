@@ -46,6 +46,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     fileprivate func getConditions(_ jsonObj: NSDictionary?) {
         if let weatherDict = jsonObj?.object(forKey: "weather") as? NSArray {
             if let condition = weatherDict[0] as? NSDictionary {
