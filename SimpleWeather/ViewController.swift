@@ -82,10 +82,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     fileprivate func getTemperature(_ mainDictionary: NSDictionary, selectedCity: String) {
         if let temperature = mainDictionary.value(forKey: "temp") {
+            let tempAsString = truncTemp(temp: temperature as! NSNumber)
             DispatchQueue.main.async {
-                self.weatherLabel.text = selectedCity + " Temperature: \(temperature)°c"
+                self.weatherLabel.text = selectedCity + " Temperature: " + tempAsString + "°c"
             }
         }
+    }
+    
+    fileprivate func truncTemp(temp: NSNumber) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        formatter.roundingMode = .up
+        return formatter.string(from: temp)!;
     }
     
     func getWeather(selectedCity: String) {
