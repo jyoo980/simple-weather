@@ -17,6 +17,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var weatherLabel: UILabel!
     @IBOutlet weak var conditionsLabel: UILabel!
     @IBOutlet weak var cityTextInput: UITextField!
+    @IBOutlet weak var humidityLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +72,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.conditionsLabel.text = "\(String(describing: currentCondition))"
     }
     
+    fileprivate func getHumidity(_ mainDictionary: NSDictionary) {
+        if let humidity = mainDictionary.value(forKey: "humidity") {
+            DispatchQueue.main.async {
+                self.humidityLabel.text = "\(humidity)" + "% humidity"
+            }
+        }
+    }
+    
+    fileprivate func getTemperature(_ mainDictionary: NSDictionary, selectedCity: String) {
+        if let temperature = mainDictionary.value(forKey: "temp") {
+            DispatchQueue.main.async {
+                self.weatherLabel.text = selectedCity + " Temperature: \(temperature)°c"
+            }
+        }
+    }
+    
     func getWeather(selectedCity: String) {
         
         let session = URLSession.shared;
@@ -89,15 +106,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     print("Weather data:\n\(dataString!)")
                     
                     if let jsonObj = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? NSDictionary {
-                        
                         self.getConditions(jsonObj)
-                        
                         if let mainDictionary = jsonObj!.object(forKey: "main") as? NSDictionary {
-                            if let temperature = mainDictionary.value(forKey: "temp") {
-                                DispatchQueue.main.async {
-                                    self.weatherLabel.text = selectedCity + " Temperature: \(temperature)°c"
-                                }
-                            }
+                            self.getTemperature(mainDictionary, selectedCity: selectedCity)
+                            self.getHumidity(mainDictionary)
                         }
                         
                         else {

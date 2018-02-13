@@ -23,7 +23,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Conditions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5II-Dc-fnu">
-                                <rect key="frame" x="0.0" y="356" width="375" height="25"/>
+                                <rect key="frame" x="0.0" y="345" width="375" height="25"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.92941176469999998" green="0.3921568627" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -52,10 +52,17 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SimpleWeather" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s34-g0-mYb">
-                                <rect key="frame" x="0.0" y="316" width="375" height="39"/>
+                                <rect key="frame" x="0.0" y="298" width="375" height="39"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <color key="textColor" red="0.92941176470588238" green="0.39215686274509803" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Humidity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCy-6m-6d3">
+                                <rect key="frame" x="0.0" y="378" width="375" height="25"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.92941176469999998" green="0.3921568627" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -65,6 +72,7 @@
                     <connections>
                         <outlet property="cityTextInput" destination="zDu-wS-HXe" id="8iy-OJ-834"/>
                         <outlet property="conditionsLabel" destination="5II-Dc-fnu" id="guA-2N-lJl"/>
+                        <outlet property="humidityLabel" destination="jCy-6m-6d3" id="EYJ-86-LIp"/>
                         <outlet property="weatherLabel" destination="s34-g0-mYb" id="o8m-sW-LAN"/>
                     </connections>
                 </viewController>
@@ -74,6 +82,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Background" width="1219" height="1219"/>
+        <image name="Background" width="1432" height="1432"/>
     </resources>
 </document>
