@@ -10,9 +10,10 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
-    private static let weatherQueryString = "https://api.openweathermap.org/data/2.5/weather?q={CITY},ca?&units=metric&APPID={APIKEY}"
     private var defaultCity = "Coquitlam"
     private var userSelectedCity:String = "Coquitlam"
+    let weatherQueryString = "https://api.openweathermap.org/data/2.5/weather?q={CITY},ca?&units=metric&APPID={APIKEY}"
+
 
     @IBOutlet weak var weatherLabel: UILabel!
     @IBOutlet weak var conditionsLabel: UILabel!
@@ -97,11 +98,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return formatter.string(from: temp)!;
     }
     
+    fileprivate func getRequestURL(city: String) -> URL? {
+        let apiKey = getAPIKey(key: "weatherAPIKey")
+        var queryString = self.weatherQueryString.replacingOccurrences(of: "{CITY}", with: city)
+        queryString = queryString.replacingOccurrences(of: "{APIKEY}", with: apiKey)
+        return URL(string: queryString)
+    }
+    
     func getWeather(selectedCity: String) {
         
         let session = URLSession.shared;
-        let queryString = ViewController.weatherQueryString.replacingOccurrences(of: "{CITY}", with: userSelectedCity)
-        let weatherURL = URL(string: queryString)
+        let weatherURL = getRequestURL(city: selectedCity)
         
         let dataTask = session.dataTask(with: weatherURL!) {
             (data: Data?, response: URLResponse?, error: Error?) in
