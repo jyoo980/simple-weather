@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		354A2B402033ECA500022352 /* PropertyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A2B3F2033ECA500022352 /* PropertyManager.swift */; };
 		35C7A8A9202FD2E700A70EE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C7A8A8202FD2E700A70EE7 /* AppDelegate.swift */; };
 		35C7A8AB202FD2E700A70EE7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C7A8AA202FD2E700A70EE7 /* ViewController.swift */; };
 		35C7A8AE202FD2E700A70EE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35C7A8AC202FD2E700A70EE7 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		354A2B3F2033ECA500022352 /* PropertyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyManager.swift; sourceTree = "<group>"; };
 		35C7A8A5202FD2E700A70EE7 /* SimpleWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35C7A8A8202FD2E700A70EE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35C7A8AA202FD2E700A70EE7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				35C7A8B4202FD2E700A70EE7 /* LaunchScreen.storyboard */,
 				35C7A8B7202FD2E700A70EE7 /* Info.plist */,
 				35C7A8AF202FD2E700A70EE7 /* SimpleWeather.xcdatamodeld */,
+				354A2B3F2033ECA500022352 /* PropertyManager.swift */,
 			);
 			path = SimpleWeather;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				354A2B402033ECA500022352 /* PropertyManager.swift in Sources */,
 				35C7A8AB202FD2E700A70EE7 /* ViewController.swift in Sources */,
 				35C7A8A9202FD2E700A70EE7 /* AppDelegate.swift in Sources */,
 				35C7A8B1202FD2E700A70EE7 /* SimpleWeather.xcdatamodeld in Sources */,

@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
-    private static let weatherQueryString = "https://api.openweathermap.org/data/2.5/weather?q={CITY},ca?&units=metric&APPID=29fcb86c6d19d850226cce991fa6985e"
+    private static let weatherQueryString = "https://api.openweathermap.org/data/2.5/weather?q={CITY},ca?&units=metric&APPID={APIKEY}"
     private var defaultCity = "Coquitlam"
     private var userSelectedCity:String = "Coquitlam"
 
