@@ -13,8 +13,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private var defaultCity = "Coquitlam"
     private var userSelectedCity:String = "Coquitlam"
     let weatherQueryString = "https://api.openweathermap.org/data/2.5/weather?q={CITY},ca?&units=metric&APPID={APIKEY}"
-
-
+    var weatherIconSet = [String : String]()
+    
     @IBOutlet weak var weatherLabel: UILabel!
     @IBOutlet weak var conditionsLabel: UILabel!
     @IBOutlet weak var cityTextInput: UITextField!
@@ -22,12 +22,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadWeatherIcons()
         getWeather(selectedCity: defaultCity)
-        cityTextInput.delegate = self;
+        cityTextInput.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func loadWeatherIcons() {
+        self.weatherIconSet["Clear"] = "☀️"
+        self.weatherIconSet["Clouds"] = "☁️"
+        self.weatherIconSet["Atmosphere"] = "🌫"
+        self.weatherIconSet["Extreme"] = "🌶"
+        self.weatherIconSet["Rain"] = "🚿"
+        self.weatherIconSet["Drizzle"] = "🌧"
+        self.weatherIconSet["Thunderstorm"] = "⚡️"
+        self.weatherIconSet["Snow"] = "☃️"
     }
     
     // TEXT FIELD BEHAVIOR
@@ -81,7 +93,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     fileprivate func setConditionText(conditionArray: NSDictionary) {
         let currentCondition = conditionArray.value(forKey: "main") as! String
-        self.conditionsLabel.text = "\(String(describing: currentCondition))"
+        self.conditionsLabel.text = "\(String(describing: currentCondition))" + " " +
+            self.weatherIconSet["\(currentCondition)"]!
     }
     
     fileprivate func getHumidity(_ mainDictionary: NSDictionary) {
