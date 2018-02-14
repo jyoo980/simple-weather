@@ -36,13 +36,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        userSelectedCity = sanitizeInput(selectedCity: textField.text!)
-        getWeather(selectedCity: userSelectedCity)
+        if (textField.text == "") {
+            displayInvalidInput()
+        } else {
+            userSelectedCity = sanitizeInput(selectedCity: textField.text!)
+            getWeather(selectedCity: userSelectedCity)
+        }
     }
     
     func sanitizeInput(selectedCity: String) -> String {
         let cleanedCity = selectedCity.trimmingCharacters(in: .whitespaces)
         return cleanedCity
+    }
+    
+    func displayInvalidInput() {
+        self.weatherLabel.text = "Please enter a valid city"
+        self.conditionsLabel.text = "Not available"
+        self.humidityLabel.text = "Not available"
+        
     }
 
     @IBAction func weatherButtonTapped(_ sender: UIButton) {
