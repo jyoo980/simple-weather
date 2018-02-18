@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController, UITextFieldDelegate {
     
     private var defaultCity = "Coquitlam"
-    private var userSelectedCity:String = "Coquitlam"
+    private var userSelectedCity : String = "Coquitlam"
     let weatherQueryString = "https://api.openweathermap.org/data/2.5/weather?q={CITY},ca?&units=metric&APPID={APIKEY}"
     var weatherIconSet = [String : String]()
     
